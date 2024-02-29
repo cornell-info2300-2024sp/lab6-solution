@@ -26,9 +26,11 @@ const RATING_STARS = array(
   5 => '★★★★★'
 );
 
-// TODO: 1. load the database library
+// load the database library
+require 'includes/db.php';
 
-// TODO: 2. open database
+// open database
+$db = open_sqlite_db('secure/site.sqlite');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,13 +58,19 @@ const RATING_STARS = array(
 
     <ul>
       <?php
-      // TODO: 3. query the reviews table
+      // query the reviews table and get all records
+      $result = exec_sql_query($db, 'SELECT * FROM reviews;');
+      $records = $result->fetchAll();
 
-      // TODO: 4. get all records from query
+      // create a review tile for each record
+      foreach ($records as $record) {
+        $name = $record['product_name'];
+        $rating = RATING_STARS[$record['rating']];
+        $comment = $record['comment'];
 
-      // TODO: 5. create a review tile (review tile partial) for each record
-      include 'includes/review-tile.php';
-      ?>
+        // tile partial
+        include 'includes/review-tile.php';
+      } ?>
     </ul>
 
   </main>

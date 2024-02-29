@@ -12,9 +12,9 @@
 <!-- practice.                                                          -->
 <li class="tile">
   <div class="tile-header">
-    <h3>TODO: product name</h3>
+    <h3><?php echo htmlspecialchars($name); ?></h3>
 
-    <div class="tile-rating">TODO: product rating</div>
+    <div class="tile-rating"><?php echo htmlspecialchars($rating); ?></div>
   </div>
-  <p class="tile-review">TODO: review comment</p>
+  <p class="tile-review"><?php echo htmlspecialchars($comment); ?> </p>
 </li>
